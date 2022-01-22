@@ -55,17 +55,17 @@ export default class RestaurantsDAO {   //creating the restaurants class
             return { restaurantsList: [], totalNumRestaurants: 0 }  //returning the array of restros in case of error
           }
     }
-    /*
+    
     static async getRestaurantByID(id) {
         try {
-          const pipeline = [
+          const pipeline = [                                    //creating a mongo db pipeline to help matching diff collections together
             {
                 $match: {
-                    _id: new ObjectId(id),
+                    _id: new ObjectId(id),                      //matching id of certain restros
                 },
             },
                   {
-                      $lookup: {
+                      $lookup: {                                //looking up for reviews collection
                           from: "reviews",
                           let: {
                               id: "$_id",
@@ -93,7 +93,7 @@ export default class RestaurantsDAO {   //creating the restaurants class
                       },
                   },
               ]
-          return await restaurants.aggregate(pipeline).next()
+          return await restaurants.aggregate(pipeline).next()                       //returning 
         } catch (e) {
           console.error(`Something went wrong in getRestaurantByID: ${e}`)
           throw e
@@ -101,16 +101,16 @@ export default class RestaurantsDAO {   //creating the restaurants class
       }
     
       static async getCuisines() {
-        let cuisines = []
+        let cuisines = []                                           //empty array fro cuisine
         try {
-          cuisines = await restaurants.distinct("cuisine")
+          cuisines = await restaurants.distinct("cuisine")          //getting all the distant restro cuisines
           return cuisines
         } catch (e) {
           console.error(`Unable to get cuisines, ${e}`)
           return cuisines
         }
       }
-*/ 
+
 
     }
 

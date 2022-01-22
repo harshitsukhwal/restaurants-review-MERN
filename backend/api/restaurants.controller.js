@@ -6,7 +6,7 @@ export default class RestaurantsController {            //class creation
     const page = req.query.page ? parseInt(req.query.page, 10) : 0                          //if we passed a pg no with a url then we will convert it to an int if not pg is 0
 
     let filters = {}
-    if (req.query.cuisine) {                            //if cuisine is in the query then filter is set to name     
+     if (req.query.cuisine) {                            //if cuisine is in the query then filter is set to name     
       filters.cuisine = req.query.cuisine
     } else if (req.query.zipcode) {
       filters.zipcode = req.query.zipcode               //if zipcode is in the query then filter by zipcode
@@ -29,12 +29,12 @@ export default class RestaurantsController {            //class creation
     }
     res.json(response)
   }
-  /*static async apiGetRestaurantById(req, res, next) {
+  static async apiGetRestaurantById(req, res, next) {       //getting restros by id
     try {
-      let id = req.params.id || {}
-      let restaurant = await RestaurantsDAO.getRestaurantByID(id)
+      let id = req.params.id || {}                          //looking for id parameter (query is something after a '?' in a url but a parameter is something that just next to '/' in a url)
+      let restaurant = await RestaurantsDAO.getRestaurantByID(id)           //calling restro dao - restro by id
       if (!restaurant) {
-        res.status(404).json({ error: "Not found" })
+        res.status(404).json({ error: "Not found" })            //no restro error
         return
       }
       res.json(restaurant)
@@ -44,13 +44,13 @@ export default class RestaurantsController {            //class creation
     }
   }
 
-  static async apiGetRestaurantCuisines(req, res, next) {
+  static async apiGetRestaurantCuisines(req, res, next) {       //getting restro cuisine
     try {
-      let cuisines = await RestaurantsDAO.getCuisines()
+      let cuisines = await RestaurantsDAO.getCuisines()     //get cuisine from restros
       res.json(cuisines)
     } catch (e) {
       console.log(`api, ${e}`)
       res.status(500).json({ error: e })
     }
-  } */
+  } 
 }
